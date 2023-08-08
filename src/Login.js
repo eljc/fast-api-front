@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { fetchToken, setToken } from "./Auth";
 import { useState } from "react";
 import axios from "axios";
-import { Button, Input, InputGroup, Grid, Row, Col } from "rsuite";
+import { Button, InputGroup } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 
 // https://github.com/oyedeletemitope/login-authentication-with-react-and-FastAPI
@@ -47,13 +47,13 @@ export default function Login() {
       <h1>login page</h1>
       <div style={{ marginTop: 30 }}>
         {fetchToken() ? (
-          <p>you are logged in {fetchToken()}</p>
+          <p>you are logged in</p>
         ) : (
           <div>
             <form>
               <InputGroup style={styles}>
                 <InputGroup.Addon> Username</InputGroup.Addon>
-                <Input
+                <input
                   size="md"
                   type="text"
                   onChange={(e) => setUsername(e.target.value)}
@@ -61,7 +61,7 @@ export default function Login() {
               </InputGroup>
               <InputGroup style={styles}>
                 <InputGroup.Addon> Password</InputGroup.Addon>
-                <Input
+                <input
                   size="md"
                   type="text"
                   onChange={(e) => setPassword(e.target.value)}
