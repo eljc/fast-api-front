@@ -2,8 +2,15 @@ import { useNavigate } from "react-router";
 import { fetchToken, setToken } from "./Auth";
 import { useState } from "react";
 import axios from "axios";
+import { Button, Input, InputGroup, Grid, Row, Col } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
 
 // https://github.com/oyedeletemitope/login-authentication-with-react-and-FastAPI
+
+const styles = {
+  width: 300,
+  marginBottom: 10,
+};
 
 export default function Login() {
   const navigate = useNavigate();
@@ -21,7 +28,7 @@ export default function Login() {
           email: username,
           password: password,
         })
-        .then(function (response) {
+        .then(function(response) {
           console.log(response.data, "response.data");
           if (response.data) {
             console.log(response.data);
@@ -29,7 +36,7 @@ export default function Login() {
             navigate("/posts");
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error, "error");
         });
     }
@@ -44,21 +51,27 @@ export default function Login() {
         ) : (
           <div>
             <form>
-              <label style={{ marginRight: 10 }}>Username</label>
-              <input
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-              />
-
-              <label style={{ marginRight: 10 }}>Password</label>
-              <input
-                type="text"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-
-              <button type="button" onClick={login}>
-                Login
-              </button>
+              <InputGroup style={styles}>
+                <InputGroup.Addon> Username</InputGroup.Addon>
+                <Input
+                  size="md"
+                  type="text"
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </InputGroup>
+              <InputGroup style={styles}>
+                <InputGroup.Addon> Password</InputGroup.Addon>
+                <Input
+                  size="md"
+                  type="text"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </InputGroup>
+              <div style={styles}>
+                <Button appearance="primary" onClick={login}>
+                  Login
+                </Button>
+              </div>{" "}
             </form>
           </div>
         )}
