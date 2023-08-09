@@ -4,7 +4,6 @@ import Login from "./Login";
 import { RequireToken } from "./Auth";
 import Posts from "./Posts";
 import Profile from "./Profile";
-import "rsuite/styles/index.less";
 import Header from "./components/Header";
 
 function App() {

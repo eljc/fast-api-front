@@ -1,24 +1,52 @@
-import { Navbar, Nav } from "rsuite";
-import HomeIcon from "@rsuite/icons/legacy/Home";
-import CogIcon from "@rsuite/icons/legacy/Cog";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { AccountCircle } from "@mui/icons-material";
+import { logout } from "../Auth";
+import { useNavigate } from "react-router";
 
-const Header = ({ onSelect, activeKey, ...props }) => {
+export default function Header() {
+  const navigate = useNavigate();
+
+  const exit = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
-    <Navbar {...props}>
-      <Nav onSelect={onSelect} activeKey={activeKey}>
-        <Nav.Item icon={<HomeIcon />}>Home</Nav.Item>
-      </Nav>
-      <Nav>
-        <Nav.Item>News</Nav.Item>
-        <Nav.Item>Users</Nav.Item>
-        <Nav.Item>About</Nav.Item>
-      </Nav>
-      <Nav pullRight>
-        <Nav.Item icon={<CogIcon />}>Account</Nav.Item>
-      </Nav>
-    </Navbar>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Button variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            News
+          </Button>
+          <Button variant="h6" component="div" sx={{ flexGrow: 2 }}>
+            About
+          </Button>
+          <Button
+            variant="h6"
+            component="div"
+            onClick={exit}
+            sx={{ flexGrow: 3 }}
+          >
+            Contact
+          </Button>
+          <AccountCircle />
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
-};
-
-export default Header;
-//https://rsuitejs.com/components/navbar/
+}

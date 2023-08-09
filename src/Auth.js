@@ -18,3 +18,7 @@ export function RequireToken({ children }) {
 
   return children;
 }
+
+export const logout = () => {
+  localStorage.removeItem("user_token");
+};

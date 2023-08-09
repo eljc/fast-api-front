@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { fetchToken } from "./Auth";
 
 const hdrs = {
   "Content-type": "application/json",
-  Authorization: "Bearer " + localStorage.getItem("user_token"),
+  Authorization: "Bearer " + fetchToken(),
 };
 
 export default function Posts() {
